@@ -24,7 +24,7 @@ const classes=useStyles();
                     <div className={classes.button}>
                         <IconButton aria-label='shopping cart items' color='inherit'>
                             {/* badge is the number of items in a shopping cart */}
-                            <Badge badgeContent={2} color='secondary'>
+                            <Badge badgeContent={0} color='secondary'>
                                 <ShoppingCart/>
                             </Badge>
                         </IconButton>
