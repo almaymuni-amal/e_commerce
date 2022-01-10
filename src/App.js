@@ -16,6 +16,7 @@ const App = () => {
         // console.log(data);
         setProducts(data);
     }
+    console.log(products);
 
     useEffect(()=>{
         fetchProducts();
@@ -27,7 +28,6 @@ const App = () => {
         </div>
     )
 }
-console.log('test');
 export default App;
 
 
