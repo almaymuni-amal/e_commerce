@@ -8,7 +8,7 @@ import useStyles from './styles';
 //     {id:1, name:'shoes' , desc: 'running shoes',price:'300$', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBgvChT-knPlb23LVKlta7WGLLY6-ZQmnXQw&usqp=CAU'},
 //     {id:2, name:'iphone' , desc: 'smart device',price:'3000$', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpSJcnhgVA4wlCcgXVHRDJCiy5yyRFZB6VJA&usqp=CAU'}
 // ]
-const Products = ({products}) =>{
+const Products = ({products , onAddToCart}) =>{
     const classes=useStyles();
 
     return(
@@ -19,7 +19,7 @@ const Products = ({products}) =>{
                 return(
                 <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
                     {/* product component */}
-                    <Product product={product}/>
+                    <Product product={product} onAddToCart={onAddToCart}/>
                 </Grid>
                 )
             })}

@@ -5,7 +5,7 @@ import useStyles from './styles';
 import Logo from '../../assets/logo.png';
 
 
-const Navbar = () => {
+const Navbar = ({allItems}) => {
 
 const classes=useStyles();
     return (
@@ -24,7 +24,7 @@ const classes=useStyles();
                     <div className={classes.button}>
                         <IconButton aria-label='shopping cart items' color='inherit'>
                             {/* badge is the number of items in a shopping cart */}
-                            <Badge badgeContent={0} color='secondary'>
+                            <Badge badgeContent={allItems} color='secondary'>
                                 <ShoppingCart/>
                             </Badge>
                         </IconButton>

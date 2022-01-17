@@ -6,6 +6,7 @@ import {commerce} from './lib/commerce';
 // or this way followed by index.js in components file
 const App = () => {
     const [products, setProducts]=useState([]);
+    const [cart, setCart]=useState({});
 
     //fetch products from commercejs api
     // func to fetch
@@ -16,15 +17,26 @@ const App = () => {
         // console.log(data);
         setProducts(data);
     }
-    console.log(products);
 
+    const fetchCart= async ()=>{
+        setCart(await commerce.cart.retrieve());
+    }
+    
+    const handleAddToCart= async (productId,quantity) => {
+        const item = await commerce.cart.add(productId,quantity);
+        setCart(item.cart);
+    }
     useEffect(()=>{
         fetchProducts();
+        fetchCart();
     },[])
+
+    console.log(cart);
+
     return (
         <div>
-            <Navbar/>
-            <Products products={products} />
+            <Navbar allItems={cart.total_items}/>
+            <Products products={products} onAddToCart={handleAddToCart} />
         </div>
     )
 }
