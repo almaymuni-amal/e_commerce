@@ -2,8 +2,11 @@ import React from 'react'
 import {Typography , Container , Button , Grid} from '@material-ui/core';
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
+import {Link } from 'react-router-dom'
 
-const Cart = ({cart}) => {
+
+const Cart = ({cart , handleUpdateCartQty ,handleRemoveFromCrt,handlEemptyCart}) => {
+
     const classes=useStyles();
 
     if(!cart.line_items)
@@ -13,7 +16,8 @@ const Cart = ({cart}) => {
     // just a function returns JSX looks like a subcomponent (easy to call)
     const EmptyCart=() =>(
         <Typography variant='subtitle1'>
-            You Have No Items In Your Shopping Cart, Go for Shopping !
+            You Have No Items In Your Shopping Cart
+            <Link to='/' className={classes.link}> Go Shopping Now !</Link>
         </Typography>
     )
 
@@ -22,14 +26,19 @@ const Cart = ({cart}) => {
             <Grid container spacing={3}>
                 {cart.line_items.map( (item) => (
                     <Grid item xs={12} sm={4} key={item.id}>
-                        <CartItem item={item}/>
+                        {console.log(item)}
+                        <CartItem handleUpdateCartQty={handleUpdateCartQty} handleRemoveFromCrt={handleRemoveFromCrt} item={item}/>
                     </Grid>
                 ))}
             </Grid>
             <div className={classes.cardDetails}>
                 <Typography variant='h4'> Subtotal:{cart.subtotal.formatted_with_symbol}</Typography>
                 <div>
-                    <Button className={classes.emptyButton} size='large' type='button' variant='contained' color='secondary'>Empty Cart</Button>
+                    <Button 
+                    className={classes.emptyButton} size='large' type='button' 
+                    onClick={()=>{handlEemptyCart()}}
+                    variant='contained' color='secondary'>Empty Cart
+                    </Button>
                     <Button className={classes.checkoutButton} size='large' type='button' variant='contained' color='primary'>Checkout</Button>
                 </div>
             </div>
